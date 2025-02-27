@@ -7,7 +7,7 @@
 - '인 메모리 데이터 저장소'를 활용하여 휘발성의 성질을 띄지만 디스크에 저장하는 옵션을 제공하여 필요에 의해 설정할 수 있다.
 - 영구 저장 옵션으로는 RDB( Redis DataBase )와 AOF( Append Only File ) 두 가지 방법을 사용할 수 있다.
 - 데이터베이스, 캐시, 메시지 브로커 등 다양한 용도로 사용한다.
-![cache](../../redis/reference/cache.gif)
+![cache](https://github.com/KrongDev/redis/blob/master/reference/cache.gif)
 ---
 
 ## Spring Data Redis
@@ -123,7 +123,7 @@ spring.redis.lettuce.pool.min-idle | 유휴 상태에서 유지할 수 있는 �
 ---
 
 # Reference
-- [Spring Boot Data Redis 환경 구성 및 활용하기 -1 : 환경 구성 및 데이터 조작 방법](`https://adjh54.tistory.com/459#1)%20Redis(Remote%20Dictionary%20Server)%20%EB%B0%8F%20%EA%B5%AC%EC%A1%B0-1`)
+- 블로그: https://adjh54.tistory.com/459#1)%20Redis(Remote%20Dictionary%20Server)%20%EB%B0%8F%20%EA%B5%AC%EC%A1%B0-1
 - [Spring.io(redis)](https://docs.spring.io/spring-data/redis/reference/redis/template.html)
 - [Spring Data Redis’s Property-Based Configuration](https://www.baeldung.com/spring-data-redis-properties)
 
