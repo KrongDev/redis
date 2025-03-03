@@ -25,9 +25,11 @@ public class ValueOperationsTest {
     public void valueOperations() {
         String key = "first";
         String value = "hello";
+        // GIVEN
         redisTemplate.opsForValue().set(key, value);
+        // WHEN
         String redisValue = (String) redisTemplate.opsForValue().get(key);
-
+        // THEN
         assertThat(value).isEqualTo(redisValue);
     }
 
@@ -35,11 +37,13 @@ public class ValueOperationsTest {
     @DisplayName("BitMap 자료형 저장 및 출력 테스트")
     public void bitmapOperationsTest() {
         String key = "bitmap";
+        // GIVEN
         ValueOperations<String, Object> opr = redisTemplate.opsForValue();
         opr.setBit(key, 1, true);
         opr.setBit(key, 2, false);
         opr.setBit(key, 3, true);
 
+        // THEN
         assertThat(opr.getBit(key, 1)).isTrue();
         assertThat(opr.getBit(key, 2)).isFalse();
         assertThat(opr.getBit(key, 3)).isTrue();
