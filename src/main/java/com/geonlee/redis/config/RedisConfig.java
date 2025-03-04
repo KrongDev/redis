@@ -3,6 +3,7 @@ package com.geonlee.redis.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -14,6 +15,11 @@ public class RedisConfig {
     private String redisHost;
     @Value("${spring.data.redis.port}")
     private int redisPort;
+
+    @Bean
+    public RedisConnection redisConnection() {
+        return redisConnectionFactory().getConnection();
+    }
 
     @Bean
     public RedisConnectionFactory redisConnectionFactory() {
