@@ -20,7 +20,7 @@ public class ZSetOperationsTest {
 
     @Test
     @DisplayName("ZSet 자료형 저장 및 출력 테스트")
-    public void setOperationsTest() {
+    public void zSetOperationsTest() {
         // GIVEN
         String key = "zset";
         ZSetOperations<String, Object> zSetOperations = redisTemplate.opsForZSet();
