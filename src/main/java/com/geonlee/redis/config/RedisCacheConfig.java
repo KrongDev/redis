@@ -1,26 +1,25 @@
 package com.geonlee.redis.config;
 
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.RedisSerializationContext;
+import org.springframework.data.redis.serializer.RedisSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 
-import java.time.Duration;
+import java.util.Map;
 
 @Configuration
+@EnableCaching
 public class RedisCacheConfig {
 
     @Bean
-    public RedisCacheManager cacheManager(RedisConnectionFactory redisConnectionFactory) {
-
-        /**
-         * 기본 cache TTL 5분 설정
-         * Redis 6.2.0 GETEX Version이 아닐경우 error 발생
-         */
-        RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig()
-                .entryTtl(Duration.ofMinutes(5))
-                .enableTimeToIdle();
+    public CacheManager cacheManager(RedisConnectionFactory redisConnectionFactory) {
 
         return RedisCacheManager
                 .builder(redisConnectionFactory)
@@ -37,7 +36,27 @@ public class RedisCacheConfig {
                  * 이미 사용중인 Process가 존재한다면 기다렸다 사용하는 구조
                  */
 //                .builder(RedisCacheWriter.lockingRedisCacheWriter(redisConnectionFactory))
-                .cacheDefaults(redisCacheConfiguration)
+                .cacheDefaults(generateCacheConfiguration())
                 .build();
+    }
+
+    private RedisCacheConfiguration generateCacheConfiguration() {
+        /**
+         * 기본 cache TTL 5분 설정
+         * Redis 6.2.0 GETEX Version이 아닐경우 error 발생
+         */
+//        RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig()
+//                .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer()))
+//                .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(RedisSerializer.java()));
+//                .entryTtl(Duration.ofMinutes(5))
+//                .enableTimeToIdle();
+
+        /**
+         * 트러블 슈팅
+         * Serialize 할 때
+         */
+        return RedisCacheConfiguration.defaultCacheConfig()
+                .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer()))
+                .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer()));
     }
 }
