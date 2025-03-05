@@ -1,5 +1,6 @@
 # Redis ( Remote Dictionary Server )
 - NoSQL 데이터베이스 중 하나이며 오픈소스 소프트웨어이다.
+- [사용할 수 있는 commands](./RedisCli.md)
 - '키-값()Key-Value'형태로 데이터를 저장한다.
 - '다양한 종류의 값'을 지정 가능하다.( String, List, Set, Sorted Set, Hash등을 지원 )
 - '인 메모리 데이터 저장소'에 저장하고 사용한다.
