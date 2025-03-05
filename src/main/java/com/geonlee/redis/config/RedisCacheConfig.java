@@ -53,7 +53,7 @@ public class RedisCacheConfig {
 
         /**
          * 트러블 슈팅
-         * Serialize 할 때
+         * Serialize 할 때 오류가 발생하면 Exception없이 정상작동 안되는 현상이 발생할 수 있음.
          */
         return RedisCacheConfiguration.defaultCacheConfig()
                 .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer()))
