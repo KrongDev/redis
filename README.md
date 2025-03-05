@@ -34,6 +34,8 @@
 [GeoOperations]() | Geospatial Indexes | 지리적 인덱스 타입의 데이터를 다루는 클래스. 지리적 인덱스에 위치를 추가하거나 검색하는 등의 연산을 수행.
 [HyperLogLogOperations]() | Hyperloglogs | 하이퍼로그로그 타입의 데이터를 다루는 클래스. 하이퍼로그로그에 요소를 추가하거나 카운트하는 등의 연산을 수행.
 [StreamOperations]() | Streams | 스트림 타입의 데이터를 다루는 클래스. 스트림에 메시지를 추가하거나 읽는 등의 연산을 수행.
+
+
 Reactive 타입들도 정의가 되어있어 `org.springframework.data.redis.core`에 위치하는 ADT를 참고할것.
 
 ---
